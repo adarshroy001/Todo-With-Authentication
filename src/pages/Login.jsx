@@ -33,7 +33,7 @@ const Login = () => {
       setIsAuthenticated(true);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      toast.error(error.response?.data?.message || "Login failed. Please try again.");
       setLoading(false);
       setIsAuthenticated(false);
     }
