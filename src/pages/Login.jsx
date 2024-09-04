@@ -31,15 +31,15 @@ const Login = () => {
 
       toast.success(data.message);
       setIsAuthenticated(true);
-      setLoading(false);
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed. Please try again.");
-      setLoading(false);
       setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (isAuthenticated) return <Navigate to={"/"} />;
+  if (isAuthenticated) return <Navigate to="/" />;
 
   return (
     <div className="login">
@@ -60,7 +60,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button disabled={loading} type="submit">
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
           <h4>Or</h4>
           <Link to="/register">Sign Up</Link>
